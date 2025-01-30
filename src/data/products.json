@@ -1,0 +1,156 @@
+[
+  {
+    "title": "Camisa de Manga Larga",
+    "description": "Camisa de manga larga de algodón, ideal para el invierno",
+    "code": "abc123",
+    "price": 250,
+    "status": true,
+    "stock": 10,
+    "category": "Ropa de Hombre",
+    "thumbnail": "https://www.freepik.es/foto-gratis/hombre-camiseta-manga-larga-negra-blanco-vistas-frontal-posterior_30126328.htm#fromView=search&page=1&position=14&uuid=60d220fa-3e40-45e3-a23e-27952bb81452&query=Long+sleeve+shirt",
+    "id": "12959711-3b8c-45a2-9bfa-8a391d5c4853"
+  },
+  {
+    "title": "Pantalón de Vestir",
+    "description": "Pantalón de vestir de lana, perfecto para ocasiones especiales",
+    "code": "def456",
+    "price": 300,
+    "status": true,
+    "stock": 5,
+    "category": "Ropa de Hombre",
+    "thumbnail": "https://example.com/pantalon-vestir.jpg",
+    "id": "5b0f1b75-1b3a-4e9a-aaf8-9bf1b83a6e8a"
+  },
+  {
+    "title": "Blusa de Mujer",
+    "description": "Blusa de mujer de seda, ideal para el verano",
+    "code": "ghi789",
+    "price": 200,
+    "status": true,
+    "stock": 8,
+    "category": "Ropa de Mujer",
+    "thumbnail": "https://example.com/blusa-mujer.jpg",
+    "id": "5b0f1b75-1b3a-4e9a-aaf8-9bf1b83a6e8b"
+  },
+  {
+    "title": "Chaquetón de Cuero",
+    "description": "Chaquetón de cuero, perfecto para el otoño",
+    "code": "jkl012",
+    "price": 400,
+    "status": true,
+    "stock": 3,
+    "category": "Ropa de Hombre",
+    "thumbnail": "https://example.com/chaqueton-cuero.jpg",
+    "id": "6b0f1b75-1b3a-4e9a-aaf8-9bf1b83a6e8c"
+  },
+  {
+    "title": "Vestido de Fiesta",
+    "description": "Vestido de fiesta de tafetán, ideal para ocasiones especiales",
+    "code": "mno345",
+    "price": 350,
+    "status": true,
+    "stock": 2,
+    "category": "Ropa de Mujer",
+    "thumbnail": "https://example.com/vestido-fiesta.jpg",
+    "id": "7b0f1b75-1b3a-4e9a-aaf8-9bf1b83a6e8d"
+  },
+  {
+    "title": "Polo de Manga Corta",
+    "description": "Polo de manga corta de algodón, perfecto para el verano",
+    "code": "pqr678",
+    "price": 150,
+    "status": true,
+    "stock": 12,
+    "category": "Ropa de Hombre",
+    "thumbnail": "https://example.com/polo-manga-corta.jpg",
+    "id": "8b0f1b75-1b3a-4e9a-aaf8-9bf1b83a6e8e"
+  },
+  {
+    "title": "Falda de Mujer",
+    "description": "Falda de mujer de lana, ideal para el invierno",
+    "code": "stu901",
+    "price": 250,
+    "status": true,
+    "stock": 6,
+    "category": "Ropa de Mujer",
+    "thumbnail": "https://example.com/falda-mujer.jpg",
+    "id": "9b0f1b75-1b3a-4e9a-aaf8-9bf1b83a6e8f"
+  },
+  {
+    "title": "Camiseta de Manga Larga",
+    "description": "Camiseta de manga larga de algodón, perfecta para el invierno",
+    "code": "vwx234",
+    "price": 200,
+    "status": true,
+    "stock": 9,
+    "category": "Ropa de Hombre",
+    "thumbnail": "https://example.com/camiseta-manga-larga.jpg",
+    "id": "10b0f1b75-1b3a-4e9a-aaf8-9bf1b83a6e8g"
+  },
+  {
+    "title": "Zapatillas de Deporte",
+    "description": "Zapatillas de deporte de cuero, ideales para correr",
+    "code": "yzx567",
+    "price": 120,
+    "status": true,
+    "stock": 15,
+    "category": "Calzado",
+    "thumbnail": "https://example.com/zapatillas-deporte.jpg",
+    "id": "11b0f1b75-1b3a-4e9a-aaf8-9bf1b83a6e8h"
+  },
+  {
+    "title": "Cinturón de Cuero",
+    "description": "Cinturón de cuero, perfecto para complementar tu outfit",
+    "code": "cde890",
+    "price": 80,
+    "status": true,
+    "stock": 20,
+    "category": "Accesorios",
+    "thumbnail": "https://example.com/cinturon-cuero.jpg",
+    "id": "12b0f1b75-1b3a-4e9a-aaf8-9bf1b83a6e8i"
+  },
+  {
+    "title": "Bolso de Mujer",
+    "description": "Bolso de mujer de tela, ideal para llevar tus cosas",
+    "code": "fgh012",
+    "price": 180,
+    "status": true,
+    "stock": 10,
+    "category": "Accesorios",
+    "thumbnail": "https://example.com/bolso-mujer.jpg",
+    "id": "13b0f1b75-1b3a-4e9a-aaf8-9bf1b83a6e8j"
+  },
+  {
+    "title": "Gorra de Béisbol",
+    "description": "Gorra de béisbol de algodón, perfecta para el verano",
+    "code": "jkl345",
+    "price": 60,
+    "status": true,
+    "stock": 25,
+    "category": "Accesorios",
+    "thumbnail": "https://example.com/gorra-beisbol.jpg",
+    "id": "14b0f1b75-1b3a-4e9a-aaf8-9bf1b83a6e8k"
+  },
+  {
+    "title": "Pantalón Corto",
+    "description": "Pantalón corto de algodón, ideal para el verano",
+    "code": "mno678",
+    "price": 220,
+    "status": true,
+    "stock": 12,
+    "category": "Ropa de Hombre",
+    "thumbnail": "https://example.com/pantalon-corto.jpg",
+    "id": "15b0f1b75-1b3a-4e9a-aaf8-9bf1b83a6e8l"
+  },
+  {
+    "title": "Vestido de Verano",
+    "description": "Vestido de verano de algodón, perfecto para el calor",
+    "code": "pqr901",
+    "price": 280,
+    "status": true,
+    "stock": 8,
+    "category": "Ropa de Mujer",
+    "thumbnail": "https://example.com/vestido-verano.jpg",
+    "id": "16b0f1b75-1b3a-4e9a-aaf8-9bf1b83a6e8m"
+  }
+]
