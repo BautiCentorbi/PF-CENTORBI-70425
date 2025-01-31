@@ -53,7 +53,10 @@ router.get("/carts/:cid", async (req, res) => {
     if (!cart) {
       return res.render("error", { error: "Carrito no encontrado" });
     }
-    return res.render("cart", { cart });
+    let total = cart.products.reduce((acc, prod) => acc + prod.product.price * prod.quantity, 0);
+    console.log(total)
+
+    return res.render("cart", { cart, total });
   } catch (error) {
     res.render("error", { error: "Carrito no encontrado" });
   }

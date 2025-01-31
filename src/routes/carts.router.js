@@ -24,8 +24,11 @@ router.get('/:cid', async(req,res)=>{
             res.setHeader('Content-Type','application/json')
             return res.status(404).json({error:'Carrito no encontrado'})
         }
+        
+        let total = cartById.products.reduce((acc,prod)=> acc + prod.product.price * prod.quantity,0)
+        
         res.setHeader('Content-Type','application/json')
-        return res.status(200).json({cartById})
+        return res.status(200).json({cartById, total})
     } catch (error) {
         errorHandler(res, error)
     }
@@ -39,8 +42,12 @@ router.get('/:cid/products', async (req, res) => {
             res.setHeader('Content-Type', 'application/json');
             return res.status(404).json({ error: 'Carrito no encontrado' });
         }
+
+        let subtotal = 'cart.products.price + carts.quantity'
+        let total = cartById.products.reduce((acc,prod)=> acc + prod.product.price * prod.quantity,0)
+
         res.setHeader('Content-Type', 'application/json');
-        return res.status(200).json({ products: cartById.products });
+        return res.status(200).json({ products: cartById.products, total});
     } catch (error) {
         errorHandler(res, error);
     }

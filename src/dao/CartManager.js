@@ -76,20 +76,6 @@ export class cartManager {
         return false;
     }
 
-    static async getTotalPrice(cartid) {
-        try {
-            let carts = await this.getCart();
-            let cart = carts.find(cart => cart.id === parseInt(cartid));
-            if (!cart) {
-                throw new Error('Cart not found');
-            }
-            let total = cart.products.reduce((acc, prod) => acc + prod.product.price * prod.quantity, 0);
-            return total;
-        } catch (error) {
-            throw new Error('Error getting total price');
-        }
-    }   
-
     static async deleteProductFromCart(cartid, productid) {
         try {
             let carts = await this.getCart();
