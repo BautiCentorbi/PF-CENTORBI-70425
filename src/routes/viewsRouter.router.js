@@ -1,7 +1,6 @@
 import { Router } from "express";
 import { productManager } from "../dao/ProductManager.js";
 import { cartManager } from "../dao/CartManager.js";
-import { productModel } from "../dao/models/ProductsModel.js";
 export const router = Router();
 
 // Products
@@ -35,18 +34,26 @@ router.get("/products/:pid", async (req, res) => {
 // Carts
 
 router.get("/carts", async (req, res) => {
-  const carts = await cartManager.getCart();
-  res.render("carts", { carts });
+  try {
+    const carts = await cartManager.getCart();
+    if (!carts) {
+      return res.render("error", { error: "No has añadido nada al carrito aún" });
+    }
+    res.render("carts", { carts });
+  } catch (error) {
+    console.log(error)
+    throw new Error("Error getting cart");
+  }
 });
 
 router.get("/carts/:cid", async (req, res) => {
   let { cid } = req.params
   try {
-    let cartById = await cartManager.getCartById(cid);
-    if (!cartById) {
+    let cart = await cartManager.getCartById(cid);
+    if (!cart) {
       return res.render("error", { error: "Carrito no encontrado" });
     }
-    return res.render("cart", { cartById });
+    return res.render("cart", { cart });
   } catch (error) {
     res.render("error", { error: "Carrito no encontrado" });
   }

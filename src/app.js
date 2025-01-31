@@ -1,6 +1,4 @@
 import express from "express";
-import dotenv from "dotenv";
-dotenv.config();
 import { connDB } from "./ConnDB.js";
 import { engine } from "express-handlebars";
 import { router as vistasRouter } from "./routes/viewsRouter.router.js";

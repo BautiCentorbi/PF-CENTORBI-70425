@@ -1,4 +1,6 @@
 import { cartModel } from "./models/CartModel.js"
+import { productModel } from "./models/ProductsModel.js";
+import mongoose from "mongoose";
 
 export class cartManager {
     static #path = ''
@@ -11,7 +13,7 @@ export class cartManager {
         try {
             const carts = await cartModel.find().lean();
             return carts
-        } catch (error) {
+        } catch (error) {   
             console.log(error)
             throw new Error('Error getting cart');
         }
@@ -19,8 +21,11 @@ export class cartManager {
 
     static async getCartById(id) {
         try {
-            const carts = await cartModel.findById(id).lean();
-            return carts
+            const cart = await cartModel.findById(id).populate('products.product').lean();
+            if (!cart) {
+                throw new Error('Cart not found');
+            }
+            return cart
         } catch (error) {
             console.log(error)
             throw new Error('Error getting the requested cart');
@@ -70,6 +75,20 @@ export class cartManager {
         }
         return false;
     }
+
+    static async getTotalPrice(cartid) {
+        try {
+            let carts = await this.getCart();
+            let cart = carts.find(cart => cart.id === parseInt(cartid));
+            if (!cart) {
+                throw new Error('Cart not found');
+            }
+            let total = cart.products.reduce((acc, prod) => acc + prod.product.price * prod.quantity, 0);
+            return total;
+        } catch (error) {
+            throw new Error('Error getting total price');
+        }
+    }   
 
     static async deleteProductFromCart(cartid, productid) {
         try {
