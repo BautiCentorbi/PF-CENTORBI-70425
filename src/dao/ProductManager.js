@@ -29,12 +29,8 @@ export class productManager {
 
   static async addProduct(product) {
     try {
-      const products = await this.getProducts();
-      products.push(product);
-      await fs.promises.writeFile(
-        this.#path,
-        JSON.stringify(products, null, 2)
-      );
+      const newProduct = await productModel.create(product);
+      return newProduct;
     } catch (error) {
       throw new Error("Error adding product");
     }

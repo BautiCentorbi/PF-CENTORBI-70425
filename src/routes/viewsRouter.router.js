@@ -30,6 +30,16 @@ router.get("/products/:pid", async (req, res) => {
     res.render("error", { error: "Producto no encontrado" });
   }
 });
+router.post("/addproduct", async (req, res) => {
+  try {
+    const productData = req.body
+    await productManager.addProduct(productData);
+    res.render("addProduct", { message: "Product created" });
+  } catch (error) {
+    console.log(error)
+    throw new Error("Error adding product");
+  }
+})
 
 // Carts
 

@@ -4,8 +4,6 @@ import { errorHandler } from '../utils.js';
 
 export const router=Router()
 
-cartManager.setPath('./src/data/carts.json')
-
 router.get('/', async(req,res)=>{
     try {
         let cart = await cartManager.getCart()

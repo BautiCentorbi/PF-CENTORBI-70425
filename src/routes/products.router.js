@@ -1,10 +1,8 @@
 import { Router } from "express";
 import { productManager } from "../dao/ProductManager.js";
-import { errorHandler, generateId } from "../utils.js";
+import { errorHandler } from "../utils.js";
 
 export const router = Router();
-
-productManager.setPath("./src/data/products.json");
 
 router.get("/", async (req, res) => {
   try {
@@ -48,8 +46,6 @@ router.post("/", async (req, res) => {
     res.setHeader("Content-Type", "application/json");
     return res.status(400).json({ error: "Todos los campos son obligatorios" });
   }
-  let uniqueID = generateId();
-  product.id = uniqueID;
   product.status = true;
   try {
     await productManager.addProduct(product);
