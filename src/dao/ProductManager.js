@@ -35,17 +35,16 @@ export class productManager {
       throw new Error("Error adding product");
     }
   }
-  static async updateProduct(id, product) {
-    const products = await this.getProducts();
-    const index = products.findIndex((prod) => prod.id === id);
-    if (index !== -1) {
-      products[index] = product;
-      await fs.promises.writeFile(
-        this.#path,
-        JSON.stringify(products, null, 2)
-      );
+  static async updateProduct(productId, updatedData) {
+    try {
+        const updatedProduct = await productModel.findByIdAndUpdate(productId, updatedData, { new: true });
+        return updatedProduct;
+    } catch (error) {
+        console.log(error)
+        throw new Error("Error updating product");
     }
-  }
+}
+
 
   static async deleteProduct(id) {
     const products = await this.getProducts();

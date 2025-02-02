@@ -1,0 +1,35 @@
+<div>
+    <h1>Editar Producto</h1>
+    <form action="/products/{{productById._id}}" method="POST">
+        <input type="hidden" name="_method" value="PUT">
+        
+        <label for="title">Título:</label>
+        <input type="text" id="title" name="title" value="{{productById.title}}" required>
+        
+        <label for="description">Descripción:</label>
+        <textarea id="description" name="description" required>{{productById.description}}</textarea>
+        
+        <label for="code">Código:</label>
+        <input type="text" id="code" name="code" value="{{productById.code}}" required>
+        
+        <label for="thumbnail">URL de la Imagen:</label>
+        <input type="text" id="thumbnail" name="thumbnail" value="{{productById.thumbnail}}">
+        
+        <label for="price">Precio:</label>
+        <input type="number" id="price" name="price" value="{{productById.price}}" required>
+        
+        <label for="stock">Stock:</label>
+        <input type="number" id="stock" name="stock" value="{{productById.stock}}" required>
+        
+        <label for="category">Categoría:</label>
+        <input type="text" id="category" name="category" value="{{productById.category}}" required>
+        
+        <label for="status">Estado:</label>
+        <select id="status" name="status" required>
+            <option value="true" {{#if productById.status}}selected{{/if}}>Activo</option>
+            <option value="false" {{#unless productById.status}}selected{{/unless}}>Inactivo</option>
+        </select>
+        
+        <button type="submit">Actualizar Producto</button>
+    </form>
+</div>
