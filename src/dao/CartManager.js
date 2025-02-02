@@ -39,12 +39,12 @@ export class cartManager {
 
     static async addProductToCart(cartId, productId) {
         try {
-            const cart = await cartModel.findById(cartId).populate('products.product').lean();
+            const cart = await cartModel.findById(cartId).populate('products.product');
             if (!cart) {
                 throw new Error('Cart not found');
             }
             const product = cart.products.find(prod => prod.product.equals(productId));
-
+    
             if (product) {
                 product.quantity++;
             } else {
@@ -52,7 +52,7 @@ export class cartManager {
             }
             await cart.save();
         } catch (error) {
-            console.log(error)
+            console.log(error);
             throw new Error('Error adding product to cart');
         }
     }
@@ -67,12 +67,13 @@ export class cartManager {
         }
     }
 
-    static async deleteProductFromCart(cartid, productid) {
+    static async deleteProductFromCart(cartId, productId) {
         try {
-            const cart = await cartModel.findById(cartid).populate('products.product').lean();
+            const cart = await cartModel.findById(cartId).populate('products.product');
             if (!cart) {
                 throw new Error('Cart not found');
-            }  const index = cart.products.findIndex(prod => prod.product.equals(productid));
+            }
+            const index = cart.products.findIndex(prod => prod.product.equals(productId));
             if (index !== -1) {
                 cart.products.splice(index, 1);
                 await cart.save();
@@ -83,5 +84,6 @@ export class cartManager {
             throw new Error('Error deleting product from cart');
         }
     }
+    
 }
 

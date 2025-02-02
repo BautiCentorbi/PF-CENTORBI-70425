@@ -5,7 +5,11 @@
     <p>Precio: {{price}}</p>
     <p>Stock: {{stock}}</p>
   {{/with}}
-  <button>Añadir al carrito</button>
+  
+  <form action="/cart/add/{{productById._id}}" method="POST">
+    <button type="submit">Añadir al carrito</button>
+  </form>
+  
   <a href="/edit/{{productById._id}}">
     <button id="edit-product-button">Editar producto</button>
   </a>

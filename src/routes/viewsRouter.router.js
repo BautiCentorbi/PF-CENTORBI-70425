@@ -69,10 +69,23 @@ router.get("/create", (req, res) => {
 router.post("/products", async (req, res) => {
   try {
     const newProduct = await productManager.addProduct(req.body);
-    res.redirect("/products");
   } catch (error) {
     console.log(error);
     res.status(500).send("Error creating product: " + error.message);
+  }
+});
+
+router.post("/cart/add/:pid", async (req, res) => {
+  const { pid } = req.params;
+  const cartId = "679b9342359b65b2722c6867";
+  try {
+    await cartManager.addProductToCart(cartId, pid);
+    res.redirect("/products/" + pid);
+  } catch (error) {
+    console.log(error)
+    res
+      .status(500)
+      .send("Error añadiendo producto al carrito: " + error.message);
   }
 });
 
@@ -104,6 +117,7 @@ router.get("/carts/:cid", async (req, res) => {
       (acc, prod) => acc + prod.product.price * prod.quantity,
       0
     );
+
     console.log(total);
 
     return res.render("cart", { cart, total });
@@ -123,16 +137,17 @@ router.delete("/carts/:cid", async (req, res) => {
   }
 });
 
-router.delete("/carts/:cid/product/:pid", async (req, res) => {
+router.post('/cart/delete/:cid/:pid', async (req, res) => {
   let { cid, pid } = req.params;
+
   try {
-    await cartManager.deleteProductFromCart(cid, pid);
-    res.render("cart", { message: "Product deleted from cart" });
+      await cartManager.deleteProductFromCart(cid, pid);
+      res.redirect('/carts/' + cid);
   } catch (error) {
-    console.log(error);
-    throw new Error("Error deleting product from cart");
+      res.status(500).send("Error eliminando producto del carrito: " + error.message);
   }
 });
+
 
 router.get("/realtimeproducts", async (req, res) => {
   res.render("realTimeProducts", {});
