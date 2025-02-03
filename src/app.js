@@ -1,4 +1,5 @@
 import express from "express";
+import methodOverride from "method-override";
 import { connDB } from "./ConnDB.js";
 import { engine } from "express-handlebars";
 import { router as vistasRouter } from "./routes/viewsRouter.router.js";
@@ -12,6 +13,7 @@ const app = express();
 app.use(express.static("./src/public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride('_method'));
 
 app.engine("handlebars", engine());
 app.set("views", "./src/views");

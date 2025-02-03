@@ -4,18 +4,28 @@ import { productManager } from "../dao/ProductManager.js";
 export const router = Router();
 
 router.get("/products", async (req, res) => {
-  const { page = 1, limit = 10, sort = 'desc', category } = req.query;  // default sort
+  const {
+    page = 1,
+    limit = 10,
+    sort = "desc",
+    category,
+    availability,
+  } = req.query;
 
   try {
     const options = {
       page: parseInt(page, 10),
       limit: parseInt(limit, 10),
-      sort: { price: sort === 'asc' ? 1 : -1 }  // Orden por precio
+      sort: { price: sort === "asc" ? 1 : -1 },
     };
 
     const query = {};
-    if (category && category !== 'all') {  // Verifica si category no es 'all'
-      query.category = category;  // Aplica el filtro de categoría
+    if (category && category !== "all") {
+      query.category = category;
+    }
+
+    if (availability && availability !== "all") {
+      query.status = availability === "available";
     }
 
     const products = await productManager.getProducts({ query, options });
@@ -28,22 +38,34 @@ router.get("/products", async (req, res) => {
       hasPrevPage: products.page > 1,
       hasNextPage: products.page < products.totalPages,
       totalPages: products.totalPages,
+      prevLink:
+        products.page > 1
+          ? `/products?page=${
+              products.page - 1
+            }&limit=${limit}&sort=${sort}&category=${category}`
+          : null,
+      nextLink:
+        products.page < products.totalPages
+          ? `/products?page=${
+              products.page + 1
+            }&limit=${limit}&sort=${sort}&category=${category}`
+          : null,
     };
 
-    res.render("home", { 
-      products: products.docs, 
-      page: products.page, 
-      limit: products.limit, 
-      sort, 
+    res.render("home", {
+      products: products.docs,
+      page: products.page,
+      limit: products.limit,
+      sort,
       category,
+      availability,
       uniqueCategories,
-      ...pagination 
+      ...pagination,
     });
   } catch (error) {
     console.log(error);
   }
 });
-
 
 router.get("/products/:pid", async (req, res) => {
   let { pid } = req.params;
@@ -110,7 +132,7 @@ router.post("/cart/add/:pid", async (req, res) => {
     await cartManager.addProductToCart(cartId, pid);
     res.redirect("/products/" + pid);
   } catch (error) {
-    console.log(error)
+    console.log(error);
     res
       .status(500)
       .send("Error añadiendo producto al carrito: " + error.message);
@@ -154,29 +176,26 @@ router.get("/carts/:cid", async (req, res) => {
   }
 });
 
-router.delete("/carts/:cid", async (req, res) => {
-  let { cid } = req.params;
-  try {
-    await cartManager.deleteCart(cid);
-    res.render("cart", { message: "Cart deleted" });
-  } catch (error) {
-    console.log(error);
-    throw new Error("Error deleting cart");
-  }
-});
 
-router.post('/cart/delete/:cid/:pid', async (req, res) => {
+router.post("/cart/delete/:cid/:pid", async (req, res) => {
   let { cid, pid } = req.params;
 
   try {
-      await cartManager.deleteProductFromCart(cid, pid);
-      res.redirect('/carts/' + cid);
+    await cartManager.deleteProductFromCart(cid, pid);
+    res.redirect("/carts/" + cid);
   } catch (error) {
-      res.status(500).send("Error eliminando producto del carrito: " + error.message);
+    res
+      .status(500)
+      .send("Error eliminando producto del carrito: " + error.message);
   }
 });
 
-
-router.get("/realtimeproducts", async (req, res) => {
-  res.render("realTimeProducts", {});
+router.post("/carts/:cid/empty", async (req, res) => {
+  const { cid } = req.params;
+  try {
+    await cartManager.clearCart(cid);
+    res.redirect(`/carts/${cid}`);
+  } catch (error) {
+    res.status(500).send("Error vaciando el carrito: " + error.message);
+  }
 });

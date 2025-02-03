@@ -36,7 +36,7 @@ nav.is-hidden {
 
 .cart-svg {
   width: 32px;
-  height:  32px;
+  height: 32px;
 }
 
 a {
@@ -83,7 +83,7 @@ nav img {
 /* Products */
 .main {
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
