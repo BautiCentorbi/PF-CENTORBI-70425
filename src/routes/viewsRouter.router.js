@@ -1,22 +1,50 @@
 import { Router } from "express";
-import { productManager } from "../dao/ProductManager.js";
 import { cartManager } from "../dao/CartManager.js";
+import { productManager } from "../dao/ProductManager.js";
 export const router = Router();
 
-// Products
-
 router.get("/products", async (req, res) => {
+  const { page = 1, limit = 10, sort = 'desc', category } = req.query;  // default sort
+
   try {
-    let products = await productManager.getProducts();
-    if (products.length > 1) {
-      console.log(products[1]);
-      console.log(Object.keys(products[1]));
+    const options = {
+      page: parseInt(page, 10),
+      limit: parseInt(limit, 10),
+      sort: { price: sort === 'asc' ? 1 : -1 }  // Orden por precio
+    };
+
+    const query = {};
+    if (category && category !== 'all') {  // Verifica si category no es 'all'
+      query.category = category;  // Aplica el filtro de categoría
     }
-    res.render("home", { products });
+
+    const products = await productManager.getProducts({ query, options });
+
+    const uniqueCategories = await productManager.getUniqueCategories();
+
+    const pagination = {
+      prevPage: products.page > 1 ? products.page - 1 : null,
+      nextPage: products.page < products.totalPages ? products.page + 1 : null,
+      hasPrevPage: products.page > 1,
+      hasNextPage: products.page < products.totalPages,
+      totalPages: products.totalPages,
+    };
+
+    res.render("home", { 
+      products: products.docs, 
+      page: products.page, 
+      limit: products.limit, 
+      sort, 
+      category,
+      uniqueCategories,
+      ...pagination 
+    });
   } catch (error) {
     console.log(error);
   }
 });
+
+
 router.get("/products/:pid", async (req, res) => {
   let { pid } = req.params;
 

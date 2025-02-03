@@ -5,8 +5,21 @@ import { errorHandler } from "../utils.js";
 export const router = Router();
 
 router.get("/", async (req, res) => {
+  const { page = 1, limit = 10, sort, category} = req.query;
+
   try {
-    let products = await productManager.getProducts();
+    const options = {
+      page: parseInt(page, 10),
+      limit: parseInt(limit, 10),
+      sort: { price: sort === 'asc' ? 1 : -1 }
+    };
+
+    const query = {};
+    if (category) {
+      query.category = category;
+    }
+
+    const products = await productManager.getProducts({ query, options });
 
     res.setHeader("Content-Type", "application/json");
     return res.status(200).json({ products });

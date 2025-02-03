@@ -1,21 +1,16 @@
 import { productModel } from "./models/ProductsModel.js";
 
 export class productManager {
-  static #path = "";
 
-  static setPath(filePath = "") {
-    this.#path = filePath;
-  }
-
-  static async getProducts() {
+  static async getProducts({ query = {}, options = {} }) {
     try {
-      return await productModel.find().lean();
+        options.lean = true;
+        return await productModel.paginate(query, options);
     } catch (error) {
-      console.log(error)
-      throw new Error("Error getting products");
+        console.log(error);
+        throw new Error("Error getting products");
     }
-  }
-
+}
   static async getProductsById(id) {
     try {
       const productById = await productModel.findById(id).lean();
@@ -24,6 +19,18 @@ export class productManager {
     } catch (error) {
       console.log(error)
       throw new Error("Error getting product by id");
+    }
+  }
+
+  static async getUniqueCategories() {
+    try {
+      const uniqueCategories = await productModel
+        .distinct("category")
+        .lean();
+      return uniqueCategories;
+    } catch (error) {
+      console.log(error)
+      throw new Error("Error getting unique categories");
     }
   }
 
@@ -47,16 +54,12 @@ export class productManager {
 
 
   static async deleteProduct(id) {
-    const products = await this.getProducts();
-    const index = products.findIndex((prod) => prod.id === id);
-    if (index !== -1) {
-      products.splice(index, 1);
-      await fs.promises.writeFile(
-        this.#path,
-        JSON.stringify(products, null, 2)
-      );
-      return true;
+    try {
+      const deletedProduct = await productModel.findByIdAndDelete(id);
+      return deletedProduct;
+    } catch (error) {
+      console.log(error)
+      throw new Error("Error deleting product");
     }
-    return false;
   }
 }

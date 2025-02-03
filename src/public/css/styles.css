@@ -183,6 +183,60 @@ svg {
   background-color: #ffcaa6;
 }
 
+.options-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 20px;
+  justify-content: space-between;
+  width: 46%;
+}
+
+.filters-form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.selects-field {
+  display: flex;
+  width: 10rem;
+  flex-direction: row;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: aliceblue;
+  border: none;
+  border-radius: 8px;
+}
+
+.pagination {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.pagination-info {
+  margin-bottom: 10px;
+}
+
+.pagination-links {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 200px;
+}
+
+.pagination-links a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+.pagination-links a:hover {
+  text-decoration: underline;
+}
+
 /* Cart */
 
 .cart-container {
