@@ -8,7 +8,7 @@
           <div class="products">
             <div class="product">
               <div>
-                <img src="{{this.product.thumbnail}}" alt="{{this.product.description}}">
+                <img class="cart-img" src="{{this.product.thumbnail}}" alt="{{this.product.description}}">
               </div>
               <div>
                 <span>{{this.product.title}}</span>
@@ -32,7 +32,7 @@
                 </form>
               </div>
 
-              <label class="price small">{{this.product.price}}</label>
+              <label class="price small">${{this.product.price}}</label>
               <form action="/api/carts/{{../cart._id}}/products/{{this.product._id}}" method="POST" class="trash-container">
                 <input type="hidden" name="_method" value="DELETE">
                 <button type="submit" class="trash-icon">

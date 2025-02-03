@@ -1,16 +1,26 @@
-<div>
-  {{#with productById}}
-    <h1>{{title}}</h1>
-    <p>{{description}}</p>
-    <p>Precio: {{price}}</p>
-    <p>Stock: {{stock}}</p>
-  {{/with}}
-  
-  <form action="/cart/add/{{productById._id}}" method="POST">
-    <button type="submit">Añadir al carrito</button>
-  </form>
-  
-  <a href="/edit/{{productById._id}}">
-    <button id="edit-product-button">Editar producto</button>
-  </a>
+<div class="product-main-container">
+  <div class="product-detail">
+    {{#with productById}}
+      <div class="product-image">
+        <img class="img-detail" src="{{thumbnail}}" alt="{{description}}">
+      </div>
+      <div class="product-info">
+        <h1>{{title}}</h1>
+        <p class="description">{{description}}</p>
+        <div class="extra-data">
+          <p>Categoría: {{category}}</p>
+          <p>Precio: ${{price}}</p>
+          <p>{{stock}} Disponibles</p>
+        </div>
+
+        <form action="/cart/add/{{_id}}" method="POST">
+          <button type="submit">Añadir al carrito</button>
+        </form>
+
+        <a href="/edit/{{_id}}">
+          <button id="edit-product-button">Editar producto</button>
+        </a>
+      </div>
+    {{/with}}
+  </div>
 </div>

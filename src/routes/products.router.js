@@ -103,7 +103,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/:pid", async (req, res) => {
   let { pid } = req.params;
 
   try {

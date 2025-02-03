@@ -81,6 +81,106 @@ nav img {
 }
 
 /* Products */
+.buttons-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.product-main-container {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    padding-top: 10rem;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+}
+.product-detail {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  width: 56rem;
+  padding: 1rem;
+  justify-content: center;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-image {
+  flex: 1;
+  max-width: 300px;
+  overflow: hidden;
+  border-radius: 0.5rem;
+}
+
+.product-image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+.product-info {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.product-info h1 {
+  font-size: 3rem;
+  margin: 0;
+}
+
+.product-info p {
+  margin: 0.5rem 0;
+}
+
+.product-info .description {
+  font-size: 1.2rem;
+}
+
+.product-info .secondary-info {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.product-info form,
+.product-info a {
+  margin-top: 1rem;
+}
+
+.product-info button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.product-info button:hover {
+  background-color: #0056b3;
+}
+
+.product-info #edit-product-button {
+  border: 1px solid #007bff;
+  background-color: transparent;
+  color: #007bff;
+}
+
+.product-info #edit-product-button:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+
+
 .main {
   display: flex;
   flex-direction: column;
@@ -120,16 +220,25 @@ nav img {
 
 .card-img {
   background-color: #ffcaa6;
-  max-height: max-content;
-  max-width: 100%;
+  width: 100%;
+  height: 0;
+  padding-bottom: 75%;
   border-radius: 0.5rem;
   transition: 0.3s ease;
+  overflow: hidden;
+  position: relative;
 }
+
 .card-img img {
   width: 100%;
   height: 100%;
+  object-fit: cover;
   border-radius: 0.5rem;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
+
 
 .card-info {
   display: flex;
@@ -239,6 +348,27 @@ svg {
 
 /* Cart */
 
+.empty-cart-btn {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: #ff0000;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.empty-cart-btn:hover {
+  background-color: #cc0000;
+}
+
+.cart-img {
+  width: 50px;
+  height: auto;
+  object-fit: cover;
+}
+
 .cart-container {
   display: flex;
   flex-direction: column;
@@ -343,6 +473,7 @@ svg {
   padding-bottom: 2px;
 }
 
+
 .card .small {
   font-size: 15px;
   margin: 0 0 auto auto;
@@ -377,56 +508,6 @@ svg {
   background-color: transparent;
   padding-bottom: 2px;
   transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
-}
-
-/* coupons */
-.coupons {
-  border-radius: 7px;
-}
-
-.coupons form {
-  display: grid;
-  grid-template-columns: 1fr 80px;
-  gap: 10px;
-  padding: 10px;
-}
-
-.input_field {
-  width: auto;
-  height: 36px;
-  padding: 0 0 0 12px;
-  border-radius: 5px;
-  outline: none;
-  border: 1px solid #e5e5e5;
-  filter: drop-shadow(0px 1px 0px #efefef)
-    drop-shadow(0px 1px 0.5px rgba(239, 239, 239, 0.5));
-  transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
-}
-
-.input_field:focus {
-  border: 1px solid transparent;
-  box-shadow: 0px 0px 0px 2px #242424;
-  background-color: transparent;
-}
-
-.coupons form button {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 10px 18px;
-  gap: 10px;
-  width: 100%;
-  height: 36px;
-  background: linear-gradient(180deg, #4480ff 0%, #115dfc 50%, #0550ed 100%);
-  box-shadow: 0px 0.5px 0.5px #efefef, 0px 1px 0.5px rgba(239, 239, 239, 0.5);
-  border-radius: 5px;
-  border: 0;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 12px;
-  line-height: 15px;
-  color: #ffffff;
 }
 
 /* Checkout */
